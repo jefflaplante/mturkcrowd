@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: xenforo
+  labels:
+    app: mtc
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mtc
+        tier: xenforo
+    spec:
+      containers:
+      - image: php:7-fpm-alpine
+        name: xenforo
+        resources:
+          limits:
+            cpu: 500m
+            memory: 200Mi
+        env:
+        - name: DB_HOST
+          value: mysql
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password.txt
+        ports:
+        - containerPort: 80
+          name: xenforo
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: mtc-data
