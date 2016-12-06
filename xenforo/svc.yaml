@@ -6,7 +6,6 @@ metadata:
   name: xenforo 
   namespace: default
 spec:
-  clusterIP: None
   ports:
   - port: 9000 
     protocol: TCP
