@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: varnish 
+  labels:
+    app: mtc 
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mtc 
+        tier: varnish 
+    spec:
+      containers:
+      - image: jefflaplante/varnish 
+        imagePullPolicy: Always
+        name: varnish 
+        ports:
+        - containerPort: 6081 
+          name: varnish 
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
