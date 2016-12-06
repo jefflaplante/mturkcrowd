@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx 
+  labels:
+    app: mtc 
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mtc 
+        tier: nginx
+    spec:
+      containers:
+      - image: nginx:alpine 
+        imagePullPolicy: Always
+        name: nginx 
+        ports:
+        - containerPort: 80
+          name: nginx 
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
