@@ -30,7 +30,7 @@ spec:
               name: mysql-pass
               key: password.txt
         ports:
-        - containerPort: 80
+        - containerPort: 9000 
           name: xenforo
         volumeMounts:
         - name: persistent-storage

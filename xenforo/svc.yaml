@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mtc
+  name: xenforo 
+  namespace: default
+spec:
+  clusterIP: None
+  ports:
+  - port: 9000 
+    protocol: TCP
+    targetPort: 9000 
+  selector:
+    app: mtc
+    tier: xenforo 
+  sessionAffinity: None
+  type: ClusterIP
