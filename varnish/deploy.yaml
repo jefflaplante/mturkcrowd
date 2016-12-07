@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: varnish 
+  name: varnish
   labels:
-    app: mtc 
+    app: mtc
 spec:
   replicas: 1
   strategy:
@@ -11,17 +11,28 @@ spec:
   template:
     metadata:
       labels:
-        app: mtc 
-        tier: varnish 
+        app: mtc
+        tier: varnish
     spec:
       containers:
-      - image: jefflaplante/varnish 
+      - image: jefflaplante/varnish
         imagePullPolicy: Always
-        name: varnish 
+        name: varnish
         ports:
-        - containerPort: 6081 
-          name: varnish 
+        - containerPort: 6081
+          name: varnish
         resources:
           limits:
-            cpu: 100m
-            memory: 200Mi
+            cpu: 200m
+            memory: 300Mi
+        env:
+        - name: VARNISH_CACHE_SIZE
+          value: 256M
+        volumeMounts:
+        - name: mtc-varnish
+          mountPath: /etc/varnish/default.vcl
+          subPath: default.vcl
+      volumes:
+      - name: mtc-varnish
+        configMap:
+          name: mtc-varnish

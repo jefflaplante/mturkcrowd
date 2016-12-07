@@ -3,15 +3,15 @@ kind: Service
 metadata:
   labels:
     app: mtc
-  name: nginx 
+  name: nginx
   namespace: default
 spec:
   ports:
-  - port: 80 
+  - port: 80
     protocol: TCP
-    targetPort: 80 
+    targetPort: 80
   selector:
     app: mtc
-    tier: nginx 
+    tier: nginx
   sessionAffinity: None
   type: ClusterIP

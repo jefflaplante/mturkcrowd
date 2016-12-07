@@ -3,15 +3,15 @@ kind: Service
 metadata:
   labels:
     app: mtc
-  name: xenforo 
+  name: xenforo
   namespace: default
 spec:
   ports:
-  - port: 9000 
+  - port: 9000
     protocol: TCP
-    targetPort: 9000 
+    targetPort: 9000
   selector:
     app: mtc
-    tier: xenforo 
+    tier: xenforo
   sessionAffinity: None
   type: ClusterIP

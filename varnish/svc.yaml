@@ -3,15 +3,15 @@ kind: Service
 metadata:
   labels:
     app: mtc
-  name: varnish 
+  name: varnish
   namespace: default
 spec:
   ports:
-  - port: 6081 
+  - port: 6081
     protocol: TCP
-    targetPort: 6081 
+    targetPort: 6081
   selector:
     app: mtc
-    tier: varnish 
+    tier: varnish
   sessionAffinity: None
   type: ClusterIP
