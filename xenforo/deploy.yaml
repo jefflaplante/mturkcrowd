@@ -15,7 +15,7 @@ spec:
         tier: xenforo
     spec:
       containers:
-      - image: jefflaplante/php-fpm
+      - image: jefflaplante/mtc_app
         name: xenforo
         resources:
           limits:
